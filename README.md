@@ -1,0 +1,1 @@
+My retention of basic facts isn't very good, so I decided to write a program to help me learn and remember things.
