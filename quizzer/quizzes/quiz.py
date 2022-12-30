@@ -46,3 +46,7 @@ class Quiz:
             self.in_session = False
         # Return answer results
         return (submission_correct, true_answer)
+    
+    def question_count(self) -> int:
+        "Returns the number of questions in the Quiz"
+        return self._root_section.question_count()

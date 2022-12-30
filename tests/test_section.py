@@ -59,3 +59,17 @@ class Test_TextSection(unittest.TestCase):
             if n == 3:
                 self.assertEqual(e, subsub_s.elements[1])
             n += 1
+    
+    def test_question_count(self):
+        "Does question_count() iterate through questions and subsections?"
+        sub_s = section.Section()
+        sub_s.elements = [
+            questions.Question('sub_Q1'),
+            questions.TextQuestion('sub_Q2')
+        ]
+        s = section.Section()
+        s.elements = [
+            questions.Question('Q1'),
+            sub_s
+        ]
+        self.assertEqual(3, s.question_count())

@@ -1,6 +1,7 @@
 "Module containing the Section class for quizzes"
 import random
 from copy import copy
+from quizzer.quizzes.questions import Question
 
 
 class Section:
@@ -50,3 +51,13 @@ class Section:
             # The list isn't in use anymore so might as well delete it
             self._iter_elements = None
             raise StopIteration
+    
+    def question_count(self) -> int:
+        "Returns the number of questions in this Section and its subsections"
+        count = 0
+        for e in self.elements:
+            if issubclass(type(e), Question):
+                count += 1
+            elif type(e) is Section:
+                count += e.question_count()
+        return count

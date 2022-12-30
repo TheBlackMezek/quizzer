@@ -1,5 +1,5 @@
 import quizzer.quizzes.quiz as quiz
-#import quizzer.quizzes.section as section
+import quizzer.quizzes.section as section
 import quizzer.quizzes.questions as questions
 import unittest
 
@@ -50,3 +50,17 @@ class Test_Quiz(unittest.TestCase):
         q.submit_answer("This string doesn't matter")
         q.submit_answer("This string doesn't matter")
         self.assertEqual(False, q.in_session)
+    
+    def test_question_count(self):
+        "Does a Quiz know the number of questions it has?"
+        sub_s = section.Section()
+        sub_s.elements = [
+            questions.Question(),
+            questions.Question()
+        ]
+        q = quiz.Quiz()
+        q._root_section.elements = [
+            questions.TextQuestion('Q1'),
+            sub_s
+        ]
+        self.assertEqual(3, q.question_count())
