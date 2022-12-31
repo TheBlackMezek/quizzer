@@ -20,11 +20,9 @@ class Test_CmdMain(unittest.TestCase):
         sys.stdout = capturedOutput
         CmdMain().onecmd('quizzes')
         sys.stdout = sys.__stdout__
-        print(capturedOutput.getvalue())
         expected = (
             "Loaded quizzes:\n"
             "quiz_1\n"
             "quiz_2\n"
         )
-        print(expected)
         self.assertEqual(expected, capturedOutput.getvalue())
