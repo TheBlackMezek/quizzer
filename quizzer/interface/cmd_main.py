@@ -10,7 +10,6 @@ class CmdMain(cmd.Cmd):
 
     # help, handled automatically by Cmd class
 
-    # list quizzes
     def do_quizzes(self, arg):
         "Print a list of all loaded quizzes"
         print("Loaded quizzes:")
