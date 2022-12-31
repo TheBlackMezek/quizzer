@@ -37,8 +37,6 @@ def clear_quizzes() -> None:
 
 def quiz_list() -> tuple:
     "Returns the names of all loaded quizzes"
-    print(f"AAAA {_quizzes.keys()}")
-    print(f"AAAAA {tuple(_quizzes.keys())}")
     return tuple(_quizzes.keys())
 
 
