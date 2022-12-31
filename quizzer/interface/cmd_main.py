@@ -1,5 +1,6 @@
 "Module containing the main menu command line class"
 import cmd
+import quizzer.quizzes.quiz_manager as quiz_manager
 
 
 class CmdMain(cmd.Cmd):
@@ -10,6 +11,12 @@ class CmdMain(cmd.Cmd):
     # help, handled automatically by Cmd class
 
     # list quizzes
+    def do_quizzes(self, arg):
+        "Print a list of all loaded quizzes"
+        print("Loaded quizzes:")
+        quizzes = quiz_manager.quiz_list()
+        for title in quizzes:
+            print(title)
 
     # edit quiz
 
