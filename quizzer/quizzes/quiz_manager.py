@@ -21,8 +21,8 @@ def add_quiz(quiz: Quiz) -> None:
 
 def delete_quiz(quiz_name: str) -> None:
     "Delete a loaded quiz"
-    # Maybe an exception should be thrown here if a quiz with that title
-    # already exists
+    # Maybe an exception should be thrown here if no quiz with
+    # with that title exists
     if quiz_exists(quiz_name):
         _quizzes.pop(quiz_name)
 
