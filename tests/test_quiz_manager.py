@@ -3,6 +3,7 @@ from quizzer.quizzes.quiz_manager import (
     _pickle_path,
     add_quiz,
     delete_quiz,
+    quiz_list,
     quiz_exists,
     get_quiz,
     save_quizzes,
@@ -25,7 +26,6 @@ class Test_QuizManager(unittest.TestCase):
         clear_quizzes()
         self.assertEqual(0, len(_quizzes))
 
-
     def test_add_quiz(self):
         """Are new quizzes correctly added to the dict?"""
         quiz = Quiz()
@@ -41,6 +41,19 @@ class Test_QuizManager(unittest.TestCase):
         add_quiz(quiz)
         delete_quiz('quiz_title')
         self.assertFalse('quiz_title' in _quizzes.keys())
+
+    def test_quiz_list(self):
+        "Does quiz_list return a tuple of all quiz names?"
+        q1 = Quiz()
+        q1.title = 'quiz_1'
+        add_quiz(q1)
+        q2 = Quiz()
+        q2.title = 'quiz_2'
+        add_quiz(q2)
+        quiz_names = quiz_list()
+        self.assertTrue('quiz_1' in quiz_names)
+        self.assertTrue('quiz_2' in quiz_names)
+        clear_quizzes()
 
     def test_quiz_exists_true(self):
         """Does quiz_exists detect when a quiz exists?"""

@@ -35,6 +35,13 @@ def clear_quizzes() -> None:
         _quizzes.pop(key)
 
 
+def quiz_list() -> tuple:
+    "Returns the names of all loaded quizzes"
+    print(f"AAAA {_quizzes.keys()}")
+    print(f"AAAAA {tuple(_quizzes.keys())}")
+    return tuple(_quizzes.keys())
+
+
 def quiz_exists(quiz_name: str) -> bool:
     "Returns whether or not a quiz with quiz_name exists"
     return quiz_name in _quizzes.keys()
