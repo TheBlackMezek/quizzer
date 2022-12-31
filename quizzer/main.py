@@ -3,4 +3,8 @@ handles all initial calls and setup"""
 from interface.cmd_main import CmdMain
 
 
-CmdMain().cmdloop()
+#CmdMain().cmdloop()
+
+from interface.cmd_edit_question import CmdEditQuestion
+from quizzes.questions import TextQuestion
+CmdEditQuestion(TextQuestion()).cmdloop()

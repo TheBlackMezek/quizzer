@@ -1,7 +1,7 @@
 "Module containing the Section class for quizzes"
 import random
 from copy import copy
-from quizzer.quizzes.questions import Question
+from quizzes.questions import Question
 
 
 class Section:

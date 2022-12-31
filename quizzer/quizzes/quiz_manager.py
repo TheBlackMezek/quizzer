@@ -1,5 +1,5 @@
 "Module containing loading, saving, and storagr for quizzes"
-from quizzer.quizzes.quiz import Quiz
+from quizzes.quiz import Quiz
 import pickle
 
 
@@ -15,6 +15,7 @@ def add_quiz(quiz: Quiz) -> None:
     "Register a new quiz"
     # An exception should be thrown here if a quiz with that title already
     # exists, but idk how to do that yet
+    print(f"current: {_quizzes.keys()}")
     if not quiz_exists(quiz.title):
         _quizzes[quiz.title] = quiz
 

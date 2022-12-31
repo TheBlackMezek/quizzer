@@ -1,12 +1,12 @@
 "Module containing the Cmd class for editing questions"
 from cmd import Cmd
-from quizzer.quizzes.questions import TextQuestion, Question
+from quizzes.questions import TextQuestion
 
 
 class CmdEditQuestion(Cmd):
     "Question editor interface"
-    intro="INTRO_NOT_SET"
-    prompt='(edit_question)'
+    intro=""
+    prompt='PROMPT_NOT_SET'
 
     def __init__(
             self,
@@ -14,7 +14,6 @@ class CmdEditQuestion(Cmd):
             completekey='tab',
             stdin=None,
             stdout=None) -> None:
-        super().__init__(completekey, stdin, stdout)
         self._question = question
         "The question this interface is being used to edit"
         self._new_text_prompt = None
@@ -24,7 +23,8 @@ class CmdEditQuestion(Cmd):
         self._new_case_sensitivity = question.case_sensitive
         "What case sensitivity will be saved to the question"
 
-        self.set_intro()
+        self.set_prompt()
+        super().__init__(completekey, stdin, stdout)
 
     def do_question(self, arg):
         "Set a new text prompt for the question"
@@ -62,15 +62,10 @@ class CmdEditQuestion(Cmd):
     def do_discard(self, arg):
         "Discard all changes made to this question and return to section"
         return True
-
-    def precmd(self, line: str) -> str:
-        # For simplicity, inputs are converted to lower case
-        line = line.lower()
-        return line
     
-    def set_intro(self) -> None:
-        "Create an intro string based on question settings"
-        self.intro = "-- Editing question --\n"
+    def set_prompt(self) -> None:
+        "Create a prompt string based on question settings"
+        self.prompt = "\n-- Editing question --\n"
 
         if self._new_text_prompt is not None:
             text_prompt = f'*"{self._new_text_prompt}"'
@@ -90,11 +85,12 @@ class CmdEditQuestion(Cmd):
         if self._new_case_sensitivity is not self._question.case_sensitive:
             case_sensitive = '*'+case_sensitive
         
-        self.intro += f"Text prompt: {text_prompt}\n"
-        self.intro += f"Answer: {answer}\n"
-        self.intro += f"Case sensitive: {case_sensitive}\n"
+        self.prompt += f"Text prompt: {text_prompt}\n"
+        self.prompt += f"Answer: {answer}\n"
+        self.prompt += f"Case sensitive: {case_sensitive}\n"
+        self.prompt += "\n(edit_question) "
     
     def postcmd(self, stop: bool, line: str) -> bool:
         # This does not seem to get called by onecmd()
-        self.set_intro()
+        self.set_prompt()
         return super().postcmd(stop, line)

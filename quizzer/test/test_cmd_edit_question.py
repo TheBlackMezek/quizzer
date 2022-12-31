@@ -1,5 +1,5 @@
-from quizzer.interface.cmd_edit_question import CmdEditQuestion
-from quizzer.quizzes.questions import TextQuestion
+from interface.cmd_edit_question import CmdEditQuestion
+from quizzes.questions import TextQuestion
 import unittest
 import sys
 from io import StringIO
@@ -59,43 +59,46 @@ class Test_CmdEditQuestion(unittest.TestCase):
         self.assertEqual('new answer', cmd._question.answer)
         self.assertEqual('new question', cmd._question.prompt_text)
     
-    def test_default_intro(self):
-        "Is the intro set correctly when the object is created?"
+    def test_default_prompt(self):
+        "Is the prompt set correctly when the object is created?"
         q = TextQuestion('The prompt', 'the answer', case_sensitive=False)
         cmd = CmdEditQuestion(q)
         expected = (
-            "-- Editing question --\n"
+            "\n-- Editing question --\n"
             'Text prompt: "The prompt"\n'
             'Answer: "the answer"\n'
             'Case sensitive: false\n'
+            "\n(edit_question) "
         )
-        self.assertEqual(expected, cmd.intro)
+        self.assertEqual(expected, cmd.prompt)
     
-    def test_intro_answer_change(self):
+    def test_prompt_answer_change(self):
         "Is the answer marked as changed when a new answer is given?"
         q = TextQuestion('The prompt', 'the answer', case_sensitive=False)
         cmd = CmdEditQuestion(q)
         cmd.onecmd("answer The New Answer")
-        cmd.set_intro() # called manually because onecmd() doesn't do it
+        cmd.set_prompt() # called manually because onecmd() doesn't do it
         expected = (
-            "-- Editing question --\n"
+            "\n-- Editing question --\n"
             'Text prompt: "The prompt"\n'
             'Answer: *"the new answer"\n'
             'Case sensitive: false\n'
+            "\n(edit_question) "
         )
-        self.assertEqual(expected, cmd.intro)
+        self.assertEqual(expected, cmd.prompt)
     
-    def test_intro_case_change(self):
+    def test_prompt_case_change(self):
         "Is the case sensitivity marked as changed when a new vale is given?"
         q = TextQuestion('The prompt', 'the answer', case_sensitive=False)
         cmd = CmdEditQuestion(q)
         cmd.onecmd("answer The Answer") # to see if it prints capitals
         cmd.onecmd("case_sensitive true")
-        cmd.set_intro() # called manually because onecmd() doesn't do it
+        cmd.set_prompt() # called manually because onecmd() doesn't do it
         expected = (
-            "-- Editing question --\n"
+            "\n-- Editing question --\n"
             'Text prompt: "The prompt"\n'
             'Answer: *"The Answer"\n'
             'Case sensitive: *true\n'
+            "\n(edit_question) "
         )
-        self.assertEqual(expected, cmd.intro)
+        self.assertEqual(expected, cmd.prompt)

@@ -1,4 +1,4 @@
-import quizzer.quizzes.questions as questions
+import quizzes.questions as questions
 import unittest
 
 

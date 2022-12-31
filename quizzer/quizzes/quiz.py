@@ -1,5 +1,5 @@
 "Module containing the Quiz class"
-from quizzer.quizzes.section import Section
+from quizzes.section import Section
 
 
 class Quiz:

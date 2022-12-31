@@ -1,6 +1,6 @@
-import quizzer.quizzes.quiz as quiz
-import quizzer.quizzes.section as section
-import quizzer.quizzes.questions as questions
+import quizzes.quiz as quiz
+import quizzes.section as section
+import quizzes.questions as questions
 import unittest
 
 

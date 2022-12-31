@@ -1,6 +1,6 @@
 "Module containing the main menu command line class"
 import cmd
-import quizzer.quizzes.quiz_manager as quiz_manager
+import quizzes.quiz_manager as quiz_manager
 
 
 class CmdMain(cmd.Cmd):

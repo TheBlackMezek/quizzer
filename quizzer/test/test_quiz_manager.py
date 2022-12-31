@@ -1,4 +1,4 @@
-from quizzer.quizzes.quiz_manager import (
+from quizzes.quiz_manager import (
     _quizzes,
     _pickle_path,
     add_quiz,
@@ -10,8 +10,8 @@ from quizzer.quizzes.quiz_manager import (
     load_quizzes,
     clear_quizzes
 )
-from quizzer.quizzes.quiz import Quiz
-from quizzer.quizzes.section import Section
+from quizzes.quiz import Quiz
+from quizzes.section import Section
 import unittest
 import pickle
 import os

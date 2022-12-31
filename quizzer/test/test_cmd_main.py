@@ -1,9 +1,8 @@
 import unittest
 import sys
 from io import StringIO
-from quizzer.interface.cmd_main import CmdMain
-from quizzer.quizzes.quiz import Quiz
-import quizzer.quizzes.quiz_manager as quiz_manager
+from interface.cmd_main import CmdMain, quiz_manager
+from quizzes.quiz import Quiz
 
 
 class Test_CmdMain(unittest.TestCase):
@@ -26,3 +25,4 @@ class Test_CmdMain(unittest.TestCase):
             "quiz_2\n"
         )
         self.assertEqual(expected, capturedOutput.getvalue())
+        quiz_manager.clear_quizzes()
